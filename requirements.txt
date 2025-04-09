@@ -7,3 +7,4 @@ tqdm
 Pillow
 git+https://github.com/openai/CLIP.git
 python-multipart
+requests
