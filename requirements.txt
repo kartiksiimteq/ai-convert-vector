@@ -5,3 +5,4 @@ pillow
 numpy
 requests
 // git+https://github.com/openai/CLIP.git
+transformers>=4.36.0

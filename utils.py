@@ -1,21 +1,22 @@
 import torch
-import clip
 from PIL import Image
-import io
+from transformers import AutoProcessor, CLIPModel
 
-# Load model only once
+# Load model and processor
 device = "cuda" if torch.cuda.is_available() else "cpu"
-model, preprocess = clip.load("ViT-B/32", device=device)
+model_name = "patrickjohncyh/fashion-clip"
+model = CLIPModel.from_pretrained(model_name).to(device)
+processor = AutoProcessor.from_pretrained(model_name)
 
 def extract_text_features(text: str):
+    inputs = processor(text=text, return_tensors="pt", padding=True).to(device)
     with torch.no_grad():
-        text_tokens = clip.tokenize([text]).to(device)
-        text_features = model.encode_text(text_tokens)
-        return text_features[0].cpu().numpy()
+        outputs = model.get_text_features(**inputs)
+    return outputs[0].cpu().numpy()
 
 def extract_image_features(image_file):
     image = Image.open(image_file).convert("RGB")
-    image_input = preprocess(image).unsqueeze(0).to(device)
+    inputs = processor(images=image, return_tensors="pt").to(device)
     with torch.no_grad():
-        image_features = model.encode_image(image_input)
-        return image_features[0].cpu().numpy()
+        outputs = model.get_image_features(**inputs)
+    return outputs[0].cpu().numpy()
