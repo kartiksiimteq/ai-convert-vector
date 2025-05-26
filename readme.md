@@ -72,7 +72,9 @@ git+https://github.com/openai/CLIP.git
 ## ▶️ Running the API Server
 
 ```bash
+sudo apt install uvicorn
 uvicorn main:app --reload
+python -m uvicorn main:app --reload
 ```
 
 The API will be available at:  
