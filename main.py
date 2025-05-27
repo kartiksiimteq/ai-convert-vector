@@ -13,6 +13,7 @@ app = FastAPI()
 class ImageURLRequest(BaseModel):
     image_url: str
 
+
 class TextRequest(BaseModel):
     text: str
 
@@ -67,5 +68,8 @@ async def vector_from_image_url(payload: ImageURLRequest):
         })
 
 
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+# if __name__ == "__main__":
+#     uvicorn.run("main:app", host="0.0.0.0", port=5505, reload=True)
+
+if __name__ == '__main__':
+    app.run(debug=False, host='0.0.0.0', port=5505)
