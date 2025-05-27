@@ -6,3 +6,4 @@ numpy
 requests
 transformers>=4.36.0
 gunicorn
+uvicorn
