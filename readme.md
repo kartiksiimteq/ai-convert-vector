@@ -3,6 +3,7 @@
 
 A lightweight **FastAPI-based** microservice for generating text and image embeddings using **OpenAI's CLIP model**. This can be used to power AI search, recommendation, or similarity systems for content like jewelry, fashion, art, or any domain needing visual & textual understanding.
 
+
 ---
 
 ## 🚀 Features
